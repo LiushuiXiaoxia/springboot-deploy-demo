@@ -1,0 +1,37 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.1.RELEASE)
+
+2018-04-24 19:22:02.693  INFO 25172 --- [           main] c.e.s.SpringbootDeployDemoApplication    : Starting SpringbootDeployDemoApplication on xiaqiulei-mac.local with PID 25172 (/Users/xiaqiulei/workspace/backendDemo/springboot-deploy-demo/deploy/springboot-deploy-demo-0.0.1-SNAPSHOT.jar started by xiaqiulei in /Users/xiaqiulei/workspace/backendDemo/springboot-deploy-demo/deploy)
+2018-04-24 19:22:02.698  INFO 25172 --- [           main] c.e.s.SpringbootDeployDemoApplication    : The following profiles are active: prod
+2018-04-24 19:22:02.795  INFO 25172 --- [           main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@567d299b: startup date [Tue Apr 24 19:22:02 CST 2018]; root of context hierarchy
+2018-04-24 19:22:04.965  INFO 25172 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2018-04-24 19:22:05.006  INFO 25172 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-24 19:22:05.007  INFO 25172 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-24 19:22:05.022  INFO 25172 --- [ost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/xiaqiulei/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-04-24 19:22:05.153  INFO 25172 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-24 19:22:05.153  INFO 25172 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2362 ms
+2018-04-24 19:22:05.344  INFO 25172 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-04-24 19:22:05.350  INFO 25172 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-24 19:22:05.350  INFO 25172 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-24 19:22:05.351  INFO 25172 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-24 19:22:05.351  INFO 25172 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-04-24 19:22:05.570  INFO 25172 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-24 19:22:05.977  INFO 25172 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@567d299b: startup date [Tue Apr 24 19:22:02 CST 2018]; root of context hierarchy
+2018-04-24 19:22:06.115  INFO 25172 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.Object com.example.springbootdeploydemo.HelloWorldController.hello()
+2018-04-24 19:22:06.117  INFO 25172 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/heartbeat]}" onto public java.lang.Object com.example.springbootdeploydemo.HeartbeatController.heartbeat()
+2018-04-24 19:22:06.124  INFO 25172 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-24 19:22:06.125  INFO 25172 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-24 19:22:06.201  INFO 25172 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-24 19:22:06.201  INFO 25172 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-24 19:22:06.433  INFO 25172 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-24 19:22:06.521  INFO 25172 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2018-04-24 19:22:06.529  INFO 25172 --- [           main] c.e.s.SpringbootDeployDemoApplication    : Started SpringbootDeployDemoApplication in 4.526 seconds (JVM running for 5.303)
+2018-04-24 19:22:07.571  INFO 25172 --- [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-24 19:22:07.572  INFO 25172 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-24 19:22:07.601  INFO 25172 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 29 ms
