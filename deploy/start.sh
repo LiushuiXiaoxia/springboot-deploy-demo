@@ -23,7 +23,7 @@ else
     pid=$(ps -ef | grep java | grep $jarfile | awk '{print $2}')
     echo "INFO: $jarfile is running! pid=$pid"
 
-    url="http://127.0.0.1:8088/heartbeat";
+    url="http://127.0.0.1:8081/heartbeat";
     echo $url
     while [ true ]
     do
