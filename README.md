@@ -72,7 +72,7 @@ public class HeartbeatController {
 
 同时配置好对应的配置文件，我这有三个配置文件，一个dev环境，一个表示prod环境，还有一个表示开关。
 
-![](doc/1.png)
+![](https://raw.githubusercontent.com/LiushuiXiaoxia/springboot-deploy-demo/master/doc/1.png)
 
 Spring支持选择对应的config文件，开发时候，配置成dev，则生效的文件`application-dev.properties`。
 
@@ -120,7 +120,7 @@ curl http://127.0.0.1:8080/hello
 
 可以直接使用java命令来启动。
 
-![](doc/2.png)
+![](https://raw.githubusercontent.com/LiushuiXiaoxia/springboot-deploy-demo/master/doc/2.png)
 
 
 为了方便起见我在项目中写个简单脚本，编译成功后，复制目标文件到相应的目录，然后直接同步到服务器即可。
