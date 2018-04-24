@@ -2,6 +2,16 @@
 
 ---
 
+<!-- TOC -->
+
+- [Spring Boot 项目自动发布](#spring-boot-项目自动发布)
+    - [简介](#简介)
+    - [准备工作](#准备工作)
+    - [编译和发布](#编译和发布)
+    - [同步到服务器](#同步到服务器)
+    - [总结](#总结)
+
+<!-- /TOC -->
 
 ## 简介
 
@@ -60,7 +70,7 @@ public class HeartbeatController {
 }
 ```
 
-同时配置好对应的配置文件，我这又三个配置文件，一个dev环境，一个表示prod环境，还有一个表示开关。
+同时配置好对应的配置文件，我这有三个配置文件，一个dev环境，一个表示prod环境，还有一个表示开关。
 
 ![](doc/1.png)
 
@@ -82,7 +92,7 @@ logging.config=classpath:logback-spring.xml
 prod
 
 ```properties
-server.port=8081
+server.port=8088
 app.env=prod
 logging.config=classpath:logback-spring.xml
 ```
@@ -100,8 +110,7 @@ curl http://127.0.0.1:8080/hello
 
 ## 编译和发布
 
-由于项目使用gradle管理，那么在发布时候，直接使用gradle编译，命令如下，clean是可选的，不过一般在本地开发在发布，建议先clean
-下。
+由于项目使用gradle管理，那么在发布时候，直接使用gradle命令编译即可，命令如下，clean是可选的，不过一般在本地开发然后再发布，建议先clean下。
 
 ```bash
 ./gradlew clean build
@@ -114,7 +123,7 @@ curl http://127.0.0.1:8080/hello
 ![](doc/2.png)
 
 
-为了方便起我在项目中写个简单脚本，编译成功后，复制目标文件到响应的目录，然后直接同步到服务器即可。
+为了方便起见我在项目中写个简单脚本，编译成功后，复制目标文件到相应的目录，然后直接同步到服务器即可。
 
 ```bash
 #!/usr/bin/env bash
@@ -124,7 +133,7 @@ curl http://127.0.0.1:8080/hello
 cp build/libs/* deploy/
 ```
 
-deploy 目录除了有目标文件外，还有线上环境的配置文件，几个服务启动停止的文件。
+deploy 目录除了有目标文件外，还有线上环境的配置文件，几个服务启动停止shell文件。
 
 start.sh，很简单，在启动前，检查是否已经启动，在没有启动情况下，在启动服务。
 
@@ -137,9 +146,7 @@ DIR_HOME="${BASH_SOURCE-$0}"
 DIR_HOME="$(dirname "$DIR_HOME")"
 PRGDIR="$(cd "${DIR_HOME}"; pwd)"
 
-
 jarfile=$PRGDIR/springboot-deploy-demo-0.0.1-SNAPSHOT.jar
-
 
 #get runing pid
 pid=$(ps -ef | grep java | grep $jarfile | awk '{print $2}')
@@ -172,15 +179,15 @@ fi
 
 同时启动前，需要配置spring boot运行的参数，最重要的有Spring Boot启动的配置文件的位置`--spring.config.location`，我配置的位置是`./`。
 
-需要注意的是，prod的配置文件，一些参数需要注意路径，开发中路径是`classpath:`开头，线上是不需要的。
+需要注意的是，prod的配置文件，一些参数需要注意路径，开发中路径是`classpath:`开头，线上是不需要的，当然了也是根据实际情况来看。
 
 ```properties
-server.port=8081
+server.port=8088
 app.env=prod
 logging.config=logback-spring.xml
 ```
 
-在启动服务后，会尝试调用接口，测试启动是否成功。
+在启动服务后，会尝试调用相应的接口，测试启动是否成功。
 
 ```bash
 url="http://127.0.0.1:8088/heartbeat";
@@ -200,7 +207,7 @@ done
 
 stop.sh
 
-停止服务很简单，直接查找对于的进程，然后杀掉，这里需要注意进程名字是以jar文件来查找的。
+停止服务很简单，直接查找对应的进程，然后杀掉，这里需要注意进程名字是以jar文件来查找的。
 
 ```bash
 #!/bin/sh
@@ -229,13 +236,57 @@ restart.sh
 
 ## 同步到服务器
 
-这里做简单演示，我使用一Ubuntu虚拟机，使用scp命令上传到服务器上，实际情况可以根据自己需求来选择，比如使用svn，ftp等。
+这里做简单演示，我使用的是Ubuntu虚拟机，使用scp命令上传到服务器上，实际情况可以根据自己需求来选择，比如使用svn，ftp等。
 
 ```bash
-scp deploy/* xiaqiulei@172.16.90.128:~/deploy
+scp deploy/* xiaqiulei@192.168.153.134:~/deploy
 ```
 
-然后ssh登陆上`172.16.90.128`机器，进入`deploy`目录，执行`./start`即可。
+然后ssh登陆上`192.168.153.134`机器，进入`deploy`目录，执行`./start`即可。
+
+
+示例：
+
+```bash
+$ scp deploy/* xiaqiulei@192.168.153.134:~/deploy
+xiaqiulei@192.168.153.134's password: 
+application-prod.properties                                                                                                                                                                  100%   63    84.7KB/s   00:00    
+application.properties                                                                                                                                                                       100%   27    26.4KB/s   00:00    
+deploy/log: not a regular file
+logback-spring.xml                                                                                                                                                                           100%  881   753.4KB/s   00:00    
+restart.sh                                                                                                                                                                                   100%   32    23.3KB/s   00:00    
+springboot-deploy-demo-0.0.1-SNAPSHOT.jar                                                                                                                                                    100%   15MB  32.5MB/s   00:00    
+start.sh                                                                                                                                                                                     100%  970     1.5MB/s   00:00    
+stop.sh                                                                                                                                                                                      100%  291   169.0KB/s   00:00    
+
+$ ssh xiaqiulei@192.168.153.134
+xiaqiulei@192.168.153.134's password: 
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-109-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+299 packages can be updated.
+161 updates are security updates.
+
+Last login: Tue Apr 24 23:04:57 2018 from 192.168.153.1
+
+# xiaqiulei @ ubuntu in ~ [23:07:59] 
+$ cd deploy 
+
+# xiaqiulei @ ubuntu in ~/deploy [23:08:01] 
+$ ./start.sh 
+INFO: /home/xiaqiulei/deploy/springboot-deploy-demo-0.0.1-SNAPSHOT.jar is running! pid=4645
+http://127.0.0.1:8088/heartbeat
+http code: 000
+http code: 000
+http code: 000
+http code: 000
+http code: 000
+http code: 200
+server start success...
+```
 
 ## 总结
 
