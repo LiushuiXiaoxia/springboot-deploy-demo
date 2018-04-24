@@ -10,6 +10,7 @@
     - [编译和发布](#编译和发布)
     - [同步到服务器](#同步到服务器)
     - [总结](#总结)
+    - [源码地址](#源码地址)
 
 <!-- /TOC -->
 
@@ -295,3 +296,8 @@ server start success...
 当然了，还有不够完善的地方，比如启动的方式是`nohup`，当进程挂掉以后，不能够自动重启，高级的用法是使用`supervisor`。
 
 再比如，scp同步的时候，都是简单的文件覆盖，比较友好的方式是，先备份原先的文件，然后再同步文件，这样如果服务有问题，还可以回滚。
+
+## 源码地址
+
+
+[源码地址 https://github.com/LiushuiXiaoxia/springboot-deploy-demo](https://github.com/LiushuiXiaoxia/springboot-deploy-demo)
