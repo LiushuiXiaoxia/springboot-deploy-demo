@@ -2,10 +2,29 @@
 
 ---
 
-前面写了一遍关于Spring Boot项目自动发布的[文章](https://www.jianshu.com/p/51459fc4560d)，[这里是Github地址](https://github.com/LiushuiXiaoxia/springboot-deploy-demo)。
-还是受到不少欢迎的，有不少点赞的朋友，这次再接再厉，跟着上一篇，介绍使用Supervisor管理Spring Boot项目。
+<!-- TOC -->
+
+- [Spring Boot 项目自动发布与Supervisor](#spring-boot-项目自动发布与supervisor)
+    - [专题](#专题)
+    - [简介](#简介)
+    - [安装](#安装)
+    - [配置](#配置)
+    - [设置supervisor开机自启](#设置supervisor开机自启)
+    - [源码地址](#源码地址)
+
+<!-- /TOC -->
+
+
+## 专题
+
+[Spring Boot 项目自动发布](https://github.com/LiushuiXiaoxia/springboot-deploy-demo/blob/master/README.md)
+
+[Spring Boot 项目自动发布与Supervisor](https://github.com/LiushuiXiaoxia/springboot-deploy-demo/blob/master/README2.md)
 
 ## 简介
+
+前面写了一遍关于Spring Boot项目自动发布的[文章](https://www.jianshu.com/p/51459fc4560d)，[这里是Github地址](https://github.com/LiushuiXiaoxia/springboot-deploy-demo)。
+还是受到不少欢迎的，有不少点赞的朋友，这次再接再厉，跟着上一篇，介绍使用Supervisor管理Spring Boot项目。
 
 supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。
 
@@ -226,7 +245,7 @@ http code: 200
 server start success...
 ```
 
-# 设置supervisor开机自启
+## 设置supervisor开机自启
 
 编辑`/etc/rc.local`文件 ，让 `supervisor` 开机启动，这样就可以使脚本在开机的时候随supervisor启动运行。
 在这个配置文件的`exit 0`前面一行加上 `service supervisor start`保存。

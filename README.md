@@ -5,6 +5,7 @@
 <!-- TOC -->
 
 - [Spring Boot 项目自动发布](#spring-boot-项目自动发布)
+    - [专题](#专题)
     - [简介](#简介)
     - [准备工作](#准备工作)
     - [编译和发布](#编译和发布)
@@ -13,6 +14,12 @@
     - [源码地址](#源码地址)
 
 <!-- /TOC -->
+
+## 专题
+
+[Spring Boot 项目自动发布](https://github.com/LiushuiXiaoxia/springboot-deploy-demo/blob/master/README.md)
+
+[Spring Boot 项目自动发布与Supervisor](https://github.com/LiushuiXiaoxia/springboot-deploy-demo/blob/master/README2.md)
 
 ## 简介
 
