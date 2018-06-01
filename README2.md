@@ -178,9 +178,11 @@ done
 
 ```bash
 [program:spring_boot_demo]
-command = bash -c /home/xiaqiulei/deploy/start.sh
-directory = /home/xiaqiulei/deploy
 user = xiaqiulei
+directory = /home/xiaqiulei/deploy
+command = bash -c ./start.sh
+autostart = true
+autorestart =  true
 ```
 
 然后重新加载配置，最后开启服务即可。
