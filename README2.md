@@ -228,3 +228,10 @@ server start success...
 
 编辑`/etc/rc.local`文件 ，让 `supervisor` 开机启动，这样就可以使脚本在开机的时候随supervisor启动运行。
 在这个配置文件的`exit 0`前面一行加上 `service supervisor start`保存。
+
+## 源码地址
+
+
+[源码地址 https://github.com/LiushuiXiaoxia/springboot-deploy-demo](https://github.com/LiushuiXiaoxia/springboot-deploy-demo)
+
+[Spring Boot 项目自动发布与Supervisor](https://github.com/LiushuiXiaoxia/springboot-deploy-demo/blob/master/README2.md)
