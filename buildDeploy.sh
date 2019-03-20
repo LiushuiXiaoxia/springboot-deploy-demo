@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-./gradlew clean build
-
-cp build/libs/* deploy/
+rm deploy/*.jar
+./gradlew clean build && ./gradlew --stop && cp build/libs/* deploy/

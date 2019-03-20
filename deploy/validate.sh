@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-url="http://127.0.0.1:8088/heartbeat";
+url="http://127.0.0.1:9090/heartbeat";
 echo $url
 while [ true ]
 do
