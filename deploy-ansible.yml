@@ -1,0 +1,69 @@
+---
+- name: deploy spring demo
+  hosts: ubuntu
+  vars:
+    # 设置变量
+    pwd: /Users/xiaqiulei/workspace/github/springboot-deploy-demo/deploy/
+  gather_facts: no
+  tasks:
+#    - name: get local file name
+#      local_action: shell ls {{ pwd }}/deploy/*.jar
+#      register: file_name
+#      tags: test
+
+    - name: echo test
+      shell: "echo 123 > 123.txt"
+      tags: test
+
+
+    # 上传jar包到服务器
+    - name: upload jar file to server
+      tags:
+        - upload
+        - test
+      copy:
+        # src: {{ pwd }}
+        src: /Users/xiaqiulei/workspace/github/springboot-deploy-demo/deploy/
+        dest: /home/xiaqiulei/data/ansible/
+#      when: file_name.stdout != ""
+
+    # 获取上次jar包运行的pid
+    - name: get pid of api
+      tags:
+        - test
+      shell: "ps -ef | grep -v grep | grep springboot-deploy-demo | awk '{print $2}'"
+      register: running_processes
+
+    # 发送停止运行信号
+    - name: Kill running processes
+      shell: "kill {{ item }}"
+      tags:
+        - test1
+      with_items: "{{ running_processes.stdout_lines }}"
+
+    # 等待60s钟，确认获取的到的pid是否都停止运行
+    - wait_for:
+        path: "/proc/{{ item }}/status"
+        state: absent
+        timeout: 60
+      tags:
+        - test
+      with_items: "{{ running_processes.stdout_lines }}"
+      ignore_errors: yes
+      register: killed_processes
+
+    - name: start wechat-api
+      shell: "nohup java -jar ./data/ansible/springboot-deploy-demo-0.0.1-SNAPSHOT.jar -Dfile.encoding=UTF-8 2>&1 &"
+      tags: start
+
+    - name: get pid of service
+      tags:
+        - test
+      shell: "ps -ef | grep -v grep | grep springboot-deploy-demo | awk '{print $2}'"
+      register: running_processes
+
+    - name: print running processes
+      shell: "echo {{ item }}"
+      tags:
+        - test1
+      with_items: "{{ running_processes.stdout_lines }}"
