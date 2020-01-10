@@ -1,4 +1,4 @@
-name: CI
+name: SHELL CI
 
 on: [push]
 
